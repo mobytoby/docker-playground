@@ -1,8 +1,6 @@
-FROM python:2.7-slim
-WORKDIR /app
-ADD . /app
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+RUN mkdir app
+COPY docker-guild/dist/* /app/
 EXPOSE 80
-ENV Name World
-CMD ["python", "app.py"]
+ENTRYPOINT ["dotnet", "/app/docker-guide.dll"]
 
